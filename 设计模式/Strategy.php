@@ -46,12 +46,12 @@
  */
 interface PayStrategy
 {
-    public function do(array $info);
+    public function pay(array $info);
 }
 
 class AlipayStrategy implements PayStrategy
 {
-    public function do(array $info)
+    public function pay(array $info)
     {
         echo '支付宝支付' . PHP_EOL;
     }
@@ -59,7 +59,7 @@ class AlipayStrategy implements PayStrategy
 
 class WxPayStrategy implements PayStrategy
 {
-    public function do(array $info)
+    public function pay(array $info)
     {
         echo '微信支付' . PHP_EOL;
     }
@@ -67,7 +67,7 @@ class WxPayStrategy implements PayStrategy
 
 class OtherPayStrategy implements PayStrategy
 {
-    public function do(array $info)
+    public function pay(array $info)
     {
         echo '其他支付类型' . PHP_EOL;
     }
@@ -82,19 +82,19 @@ class PayContext
         $this->payStrategy = $payStrategy;
     }
 
-    public function handle(array $info)
+    public function execute(array $info)
     {
-        return $this->payStrategy->do($info);
+        return $this->payStrategy->pay($info);
     }
 }
 
 $info = ['goods_id' => 20000, 'amount' => 1000];
 
 $alipayContext = new PayContext(new AlipayStrategy());
-$alipayContext->handle($info);
+$alipayContext->execute($info);
 
 $wxPayContext = new PayContext(new WxPayStrategy());
-$wxPayContext->handle($info);
+$wxPayContext->execute($info);
 
 $otherContext = new PayContext(new OtherPayStrategy());
-$otherContext->handle($info);
+$otherContext->execute($info);
