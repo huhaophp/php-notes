@@ -44,7 +44,7 @@ class CarFactory
     {
         $className = ucfirst($carName);
         if (!$className || !class_exists($className)) {
-            throw new ErrorException('Class name error.');
+            throw new InvalidArgumentException(sprintf('Invalid class name {%s}', $className));
         } else {
             return new $className();
         }
