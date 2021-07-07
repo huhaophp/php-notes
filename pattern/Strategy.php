@@ -82,7 +82,7 @@ class PayContext
         $this->payStrategy = $payStrategy;
     }
 
-    public function execute(array $info)
+    public function handle(array $info)
     {
         return $this->payStrategy->pay($info);
     }
@@ -91,10 +91,10 @@ class PayContext
 $info = ['goods_id' => 20000, 'amount' => 1000];
 
 $alipayContext = new PayContext(new AlipayStrategy());
-$alipayContext->execute($info);
+$alipayContext->handle($info);
 
 $wxPayContext = new PayContext(new WxPayStrategy());
-$wxPayContext->execute($info);
+$wxPayContext->handle($info);
 
 $otherContext = new PayContext(new OtherPayStrategy());
-$otherContext->execute($info);
+$otherContext->handle($info);
