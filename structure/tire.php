@@ -78,13 +78,13 @@ class Trie
 }
 
 $trie = new Trie();
-$arr = [];
+$arr = ['abc', 'ab', 'bc'];
 
 foreach ($arr as $str) {
     $trie->insert($str);
 }
 
-if ($trie->find('a')) {
+if ($trie->find('bc')) {
     print "Contains this string\n";
 } else {
     print "Does not contain this string\n";
