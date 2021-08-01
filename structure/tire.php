@@ -1,6 +1,6 @@
 <?php
 
-// 一、Tire树的基本性质
+// 一、Trie 树的基本性质
 //  根节点不包含字符，除根节点外每一个节点都只包含一个字符。
 //  从根节点到某一节点，路径上经过的字符连接起来，为该节点对应的字符串。
 //  每个节点的所有子节点包含的字符都不相同。
@@ -65,7 +65,7 @@ class Trie
             return false;
         }
 
-        for ($i = 0; $i < mb_strlen($str); $i++) {
+        for ($i = 0, $len = mb_strlen($str); $i < $len; $i++) {
             $index = mb_substr($str, $i, 1);
             if (empty($node->child[$index])) {
                 return false;
