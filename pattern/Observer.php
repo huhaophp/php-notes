@@ -7,23 +7,21 @@ interface Observable
 {
     // 添加/注册观察者
     public function attach(Observer $observer);
-
     // 删除观察者
     public function detach(Observer $observer);
-
     // 触发通知
     public function notify();
 }
 
 /**
  * 被观察者
- * 职责：添加观察者到$observers属性中，
- * 有变动时通过notify()方法运行通知
+ *
+ * 职责：添加观察者到$observers属性中，有变动时通过notify()方法运行通知
  */
 class Order implements Observable
 {
     // 保存观察者
-    private $observers = array();
+    private $observers = [];
     // 订单状态
     private $state = 0;
 
@@ -62,7 +60,7 @@ class Order implements Observable
     }
 
     // 获取提供给观察者的状态
-    public function getState()
+    public function getState(): int
     {
         return $this->state;
     }

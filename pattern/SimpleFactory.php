@@ -45,15 +45,16 @@ class CarFactory
         $className = ucfirst($carName);
         if (!$className || !class_exists($className)) {
             throw new InvalidArgumentException(sprintf('Invalid class name {%s}', $className));
-        } else {
-            return new $className();
         }
+
+        return new $className();
     }
 }
 
 // Test
 CarFactory::make('DzCar')->drive();
 CarFactory::make('BwCar')->drive();
+CarFactory::make('BwCar1')->drive();
 
 // QA:
 // Q: 可能你会存在疑问，使用 new 去实现类不是更加的简单，在业务里面每次new以下。

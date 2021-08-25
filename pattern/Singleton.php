@@ -25,11 +25,11 @@ final class Singleton
      */
     public static function getInstance(): Singleton
     {
-        if (null === static::$instance) {
-            static::$instance = new static();
+        if (is_null(Singleton::$instance)) {
+            Singleton::$instance = new Singleton();
         }
 
-        return static::$instance;
+        return Singleton::$instance;
     }
 
     /**
@@ -57,5 +57,9 @@ final class Singleton
 
 $instance1 = Singleton::getInstance();
 $instance2 = Singleton::getInstance();
+$instance3 = Singleton::getInstance();
+$instance4 = Singleton::getInstance();
 
 var_dump($instance1 === $instance2);
+var_dump($instance1 === $instance3);
+var_dump($instance3 === $instance4);
